@@ -143,7 +143,7 @@ export default {
         this.materials.custom = this.createShaderMaterial('custom', this.scene);
 
         // Create video textures
-        this.textures.video = new VideoTexture('video', BASE_URL + 'videos/lotr.mp4', this.scene, false,
+        this.textures.video = new VideoTexture('video', BASE_URL + 'videos/video.mp4', this.scene, false,
                                                false, VideoTexture.BILINEAR_SAMPLINGMODE, 
                                                {autoUpdateTexture: true, autoPlay: true, loop: true, muted: true});
 
