@@ -29,7 +29,7 @@ export default {
         createShaderMaterial(shader, scene) {
             let material = new ShaderMaterial(shader, scene, BASE_URL + 'shaders/' + shader, {
                 attributes: ['position', 'uv'],
-                uniforms: ['worldViewProjection'],
+                uniforms: ['worldViewProjection', 'time'],
                 samplers: ['image']
             });
             material.backFaceCulling = false;
@@ -143,7 +143,7 @@ export default {
         this.materials.custom = this.createShaderMaterial('custom', this.scene);
 
         // Create video textures
-        this.textures.video = new VideoTexture('video', BASE_URL + 'videos/dm_vector.mp4', this.scene, false,
+        this.textures.video = new VideoTexture('video', BASE_URL + 'videos/lotr.mp4', this.scene, false,
                                                false, VideoTexture.BILINEAR_SAMPLINGMODE, 
                                                {autoUpdateTexture: true, autoPlay: true, loop: true, muted: true});
 
@@ -193,8 +193,15 @@ export default {
         });
 
         // Render every frame
+        let time = 0.0;
         engine.runRenderLoop(() => {
+
+            this.materials[this.filter].setFloat('time', time);
+           
+            console.log()
+            time += 0.01;
             this.scene.render();
+
         });
     }
 }
